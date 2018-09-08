@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.pheonix.ordermanagement</groupId>
-	<artifactId>pheonix-OrderManagement-Rest</artifactId>
+	<artifactId>pheonix-ordermgt-hateos-springboot</artifactId>
 	<version>${version.number}</version>
 	<packaging>jar</packaging>
 

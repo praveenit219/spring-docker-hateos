@@ -5,7 +5,7 @@
 
 	<groupId>com.pheonix.ordermanagement</groupId>
 	<artifactId>pheonix-OrderManagement-Rest</artifactId>
-	<version>1.0.0</version>
+	<version>${version.number}</version>
 	<packaging>jar</packaging>
 
 	<name>SpringUnitAcceptanceOrderManagement</name>
@@ -26,7 +26,7 @@
 			> Build, Execution, Development > Build Tools > Maven > Runner > Properties. 
 			Add git.commit.time and git.commit.id.abbrev with empty value. -->
 		<version.number>${git.commit.time}.${git.commit.id.abbrev}</version.number>
-		<docker.repository.name>phauer/${project.artifactId}</docker.repository.name>
+		<docker.repository.name>praveenit219/${project.artifactId}</docker.repository.name>
 		<!-- Instead of docker hub, you can use your own registry: -->
 		<!--<docker.repository.name>registry.domain.de/group/${project.artifactId}</docker.repository.name> -->
 	</properties>
@@ -145,7 +145,7 @@
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
 				<configuration>
-					<skip>true</skip> <!-- we push the container image to the local registry instead -->
+					<skip>false</skip> <!-- we push the container image to the local registry instead -->
 				</configuration>
 			</plugin>
 
@@ -153,7 +153,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<configuration>
-					<skip>true</skip> <!-- we push the image instead -->
+					<skip>false</skip> <!-- we push the image instead -->
 				</configuration>
 			</plugin>
 

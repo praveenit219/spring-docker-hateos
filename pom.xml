@@ -112,7 +112,7 @@
 
 
 	<build>
-	
+
 		<plugins>
 
 			<plugin>
@@ -140,12 +140,64 @@
 						necessary. otherwise the variables are not available in the pom -->
 				</configuration>
 			</plugin>
-			
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.15.9</version>
+				<extensions>true</extensions>
+				<configuration>
+					<authConfig> <!-- or use "docker login" up front to store the credentials on the local 
+							machine. -->
+						<username>praveenit219</username>
+						<password>Nani@2018</password>
+					</authConfig>
+					<images>
+						<image>
+							<name>${docker.repository.name}:${version.number}</name>
+							<alias>${project.artifactId}</alias>
+							<build>
+								<from>anapsix/alpine-java:jre8</from>
+								<tags><!-- define additional tags for the image -->
+									<tag>latest</tag>
+								</tags>
+								<assembly>
+									<descriptor>assembly.xml</descriptor>
+								</assembly>
+								<ports>
+									<port>10203</port>
+								</ports>
+								<cmd>
+									<shell>
+										java -jar
+										/maven/${project.artifactId}-${version.number}.jar
+									</shell>
+								</cmd>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>build-docker-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>push-docker-image-to-registry</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
 				<configuration>
-					<skip>false</skip> <!-- we push the container image to the local registry instead -->
+					<skip>true</skip> <!-- we push the container image to the local registry instead -->
 				</configuration>
 			</plugin>
 
@@ -153,7 +205,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<configuration>
-					<skip>false</skip> <!-- we push the image instead -->
+					<skip>true</skip> <!-- we push the image instead -->
 				</configuration>
 			</plugin>
 
@@ -172,7 +224,7 @@
 
 		</plugins>
 	</build>
-	
+
 
 	<repositories>
 		<repository>

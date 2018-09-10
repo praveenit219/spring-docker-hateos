@@ -158,7 +158,7 @@
 							<build>
 								<from>anapsix/alpine-java:jre8</from>
 								<tags><!-- define additional tags for the image -->
-									<tag>${version.number}</tag>
+									
 									<tag>latest</tag>
 								</tags>
 								<assembly>

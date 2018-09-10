@@ -1,8 +1,9 @@
 # image not found? login using "docker login --username=abc --password=abc https://registry.domain.de"
-version: '2'
-services:
-  pheonix-ordermgt-hateos-springboot:
-    image: praveenit219/pheonix-ordermgt-hateos-springboot:latest
-    network_mode: "host"
-    ports:
+services: 
+  pheonix-ordermgt-hateos-springboot: 
+    container_name: pheonix-ordermgt-hateos-springboot
+    image: "pheonix-ordermgt-hateos-springboot:latest"
+    network_mode: host
+    ports: 
       - "10203:10203"
+version: "3"

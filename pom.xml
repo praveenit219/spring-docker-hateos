@@ -148,8 +148,8 @@
 				<configuration>
 					<authConfig> <!-- or use "docker login" up front to store the credentials on the local 
 							machine. -->
-						<username>praveenit219</username>
-						<password>Nani@2018</password>
+						<username></username>
+						<password></password>
 					</authConfig>
 					<images>
 						<image>
